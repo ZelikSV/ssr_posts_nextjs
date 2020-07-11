@@ -2,6 +2,10 @@
   font-family: "Roboto Mono", monospace;
 }
 
+.cursor_link {
+  cursor: pointer;
+}
+
 /* Make clicks pass-through */
 #nprogress {
   pointer-events: none;
