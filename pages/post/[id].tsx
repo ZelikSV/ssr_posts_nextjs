@@ -3,6 +3,10 @@ import React, { useState, useEffect } from "react";
 import MainLayout from "../../components/MainLayout/MainLayout";
 import Loading from "../../components/Loading/Loading";
 import { IPost, IPostNextPageContext } from "../../types/models";
+import { ArrowLeftOutlined } from "@ant-design/icons";
+import { Descriptions } from "antd";
+
+import styles from "./post.module.scss";
 
 interface IPostProps {
   post: IPost;
@@ -30,11 +34,15 @@ const PostItem = ({ post: serverPost }: IPostProps) => {
   return (
     <MainLayout>
       {uiPost ? (
-        <>
-          <p>{uiPost.title}</p>
-          <p>{uiPost.body}</p>
-          <button onClick={handleGoPosts}>back to posts</button>
-        </>
+        <div className={styles.postWrapper}>
+          <Descriptions title={uiPost.title}>
+            <Descriptions.Item>{uiPost.body}</Descriptions.Item>
+          </Descriptions>
+          <span onClick={handleGoPosts} className={styles.backLink}>
+            <ArrowLeftOutlined />
+            Back To Posts
+          </span>
+        </div>
       ) : (
         <Loading />
       )}
@@ -42,9 +50,10 @@ const PostItem = ({ post: serverPost }: IPostProps) => {
   );
 };
 
-/* This is data processing only BE side
-    We use DefaultLoading component in _app file and functions from Next_js getServerSideProps
-    and (getStaticProps not used now)
+/*
+This is data processing only BE side
+We use DefaultLoading component in _app file and functions from Next_js getServerSideProps
+ and (getStaticProps not used now)
 */
 
 export const getServerSideProps = async ({ query }: IPostNextPageContext) => {

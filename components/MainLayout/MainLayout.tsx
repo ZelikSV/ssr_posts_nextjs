@@ -1,49 +1,45 @@
 import Link from "next/link";
 import Head from "next/dist/next-server/lib/head";
 import React from "react";
+import { routes } from "../../pages/routes";
 
-const MainLayout = ({children, title = ''}) => {
-    return (
-        <>
-            <Head>
-                <title>{title}</title>
-            </Head>
-            <nav>
-                <ul>
-                    <li>
-                        <Link href="/about">
-                            <a>About</a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/posts">
-                            <a>Posts</a>
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
-            <main>
-                {children}
-            </main>
-            <style jsx>{
-                `nav ul {
-                    display: flex;
-                    background: blue;
-                }
-                li {
-                margin-left: 15px;
-                list-style: none;
-                padding: 10px 25px
-                }
-                a {
-                 color: #fff;
-                }
-                `
-            }
-            
-            </style>
-        </>
-    )
+import { Layout, Menu } from "antd";
+
+const { Header, Content, Footer } = Layout;
+
+const MainLayout = ({ children, title = "" }) => {
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Layout>
+        <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
+          <div className="logo" />
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+            {routes.map((page) => (
+              <Menu.Item key={page.id}>
+                <Link href={page.path}>
+                  <a>{page.title}</a>
+                </Link>
+              </Menu.Item>
+            ))}
+          </Menu>
+        </Header>
+        <Content className="site-layout">
+          <div
+            className="site-layout-background"
+            style={{
+              marginTop: 64,
+              minHeight: "calc(100vh - 64px)",
+            }}
+          >
+            {children}
+          </div>
+        </Content>
+      </Layout>
+    </>
+  );
 };
 
 export default MainLayout;

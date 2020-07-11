@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
+import * as faker from "faker";
 import MainLayout from "../../components/MainLayout/MainLayout";
-import Link from "next/link";
 import Loading from "../../components/Loading/Loading";
+import Link from "next/link";
+import { List, Avatar, Space, Button } from "antd";
+import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
+
 import { IPost } from "../../types/models";
 import { NextPageContext } from "next";
+
+import styles from "./posts.module.scss";
 
 interface IPostsProps {
   posts: IPost[];
@@ -25,23 +31,62 @@ const Posts = ({ posts: serverPosts }: IPostsProps) => {
     }
   }, [setPosts]);
 
+  const IconText = ({ icon, text }) => (
+    <Space>
+      {React.createElement(icon)}
+      {text}
+    </Space>
+  );
+
   return (
     <MainLayout title="Posts Page">
-      <ul>
+      <div className={styles.postsPage}>
         {posts ? (
-          posts.map((postItem) => {
-            return (
-              <li key={postItem.id}>
-                <Link href="post/[id]" as={`post/${postItem.id}`}>
-                  <h1>{postItem.title}</h1>
-                </Link>
-              </li>
-            );
-          })
+          <List
+            itemLayout="vertical"
+            size="small"
+            dataSource={posts}
+            renderItem={(item) => (
+              <List.Item
+                key={item.id}
+                actions={[
+                  <IconText
+                    icon={StarOutlined}
+                    text={faker.random.number({ min: 12, max: 220 })}
+                    key="list-vertical-star-o"
+                  />,
+                  <IconText
+                    icon={LikeOutlined}
+                    text={faker.random.number({ min: 12, max: 50 })}
+                    key="list-vertical-like-o"
+                  />,
+                  <IconText
+                    icon={MessageOutlined}
+                    text={faker.random.number({ min: 12, max: 100 })}
+                    key="list-vertical-message"
+                  />,
+                ]}
+              >
+                <List.Item.Meta
+                  avatar={<Avatar src={faker.image.imageUrl(200, 200)} />}
+                  title={<span>{item.title}</span>}
+                  description={`${item.body.slice(
+                    0,
+                    faker.random.number({ min: 120, max: 220 })
+                  )}...`}
+                />
+                <Button type="link">
+                  <Link href="post/[id]" as={`post/${item.id}`}>
+                    <a>See More</a>
+                  </Link>
+                </Button>
+              </List.Item>
+            )}
+          />
         ) : (
           <Loading />
         )}
-      </ul>
+      </div>
     </MainLayout>
   );
 };
