@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import MainLayout from "../../components/MainLayout/MainLayout";
 import Loading from "../../components/Loading/Loading";
 import { IPost, IPostNextPageContext } from "../../types/models";
@@ -32,7 +32,7 @@ const PostItem = ({ post: serverPost }: IPostProps) => {
   }, [setUiPost]);
 
   return (
-    <MainLayout>
+    <MainLayout titleName={`post: ${uiPost.title}`}>
       {uiPost ? (
         <div className={styles.postWrapper}>
           <Descriptions title={uiPost.title}>

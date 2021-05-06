@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { NextPageContext } from "next";
 import * as faker from "faker";
-import MainLayout from "../../components/MainLayout/MainLayout";
-import Loading from "../../components/Loading/Loading";
 import Link from "next/link";
 import { List, Avatar, Space, Button } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
 
+import MainLayout from "../../components/MainLayout/MainLayout";
+import Loading from "../../components/Loading/Loading";
 import { IPost } from "../../types/models";
-import { NextPageContext } from "next";
 
 import styles from "./posts.module.scss";
 
@@ -39,7 +39,7 @@ const Posts = ({ posts: serverPosts }: IPostsProps) => {
   );
 
   return (
-    <MainLayout title="Posts Page">
+    <MainLayout titleName="Posts Page">
       <div className={styles.postsPage}>
         {posts ? (
           <List
