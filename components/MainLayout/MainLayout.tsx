@@ -5,6 +5,7 @@ import { Layout, Menu } from "antd";
 import { useRouter } from "next/router";
 
 import { routes } from "../../pages/routes";
+import styles from "./MainLayout.module.scss";
 
 const { Header, Content } = Layout;
 
@@ -21,7 +22,7 @@ const MainLayout = ({ children, titleName = "" }) => {
         <title>{titleName}</title>
       </Head>
       <Layout>
-        <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
+        <Header className={styles.header}>
           <div className="logo" />
           <Menu
             theme="dark"
@@ -38,13 +39,7 @@ const MainLayout = ({ children, titleName = "" }) => {
           </Menu>
         </Header>
         <Content className="site-layout">
-          <div
-            className="site-layout-background"
-            style={{
-              marginTop: 64,
-              minHeight: "calc(100vh - 64px)",
-            }}
-          >
+          <div className={`site-layout-background ${styles.content}`}>
             {children}
           </div>
         </Content>

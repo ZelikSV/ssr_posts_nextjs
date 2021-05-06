@@ -1,3 +1,5 @@
+@import "../../styles/colors";
+
 .loginPage {
   position: fixed;
   top: 0;
@@ -5,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background: #ddd;
+  background: $_DDD;
 }
 
 .formWrapper {
@@ -14,10 +16,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: thin solid #ccc;
+  border: thin solid $_CCC;
   border-radius: 5px;
   padding: 20px 30px;
-  background: #fff;
+  background: $_FFF;
 
   button {
     margin: 20px 0;
