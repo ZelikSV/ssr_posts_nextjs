@@ -1,0 +1,25 @@
+.loginPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background: #ddd;
+}
+
+.formWrapper {
+  width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: thin solid #ccc;
+  border-radius: 5px;
+  padding: 20px 30px;
+  background: #fff;
+
+  button {
+    margin: 20px 0;
+  }
+}

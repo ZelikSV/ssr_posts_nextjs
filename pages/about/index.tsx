@@ -7,7 +7,7 @@ interface IAboutProps {
 
 const AboutPage = ({ title }: IAboutProps) => {
   return (
-    <MainLayout title="About Page">
+    <MainLayout titleName="About Page">
       <div>
         <h1>{title}</h1>
         <p>

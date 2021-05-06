@@ -1,22 +1,33 @@
+import { useMemo } from "react";
 import Link from "next/link";
 import Head from "next/dist/next-server/lib/head";
-import React from "react";
+import { Layout, Menu } from "antd";
+import { useRouter } from "next/router";
+
 import { routes } from "../../pages/routes";
 
-import { Layout, Menu } from "antd";
+const { Header, Content } = Layout;
 
-const { Header, Content, Footer } = Layout;
+const MainLayout = ({ children, titleName = "" }) => {
+  const router = useRouter();
 
-const MainLayout = ({ children, title = "" }) => {
+  const selectedKey = useMemo(() => router.pathname.replace("/", ""), [
+    router.pathname,
+  ]);
+
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{titleName}</title>
       </Head>
       <Layout>
         <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
           <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={[selectedKey]}
+          >
             {routes.map((page) => (
               <Menu.Item key={page.id}>
                 <Link href={page.path}>
