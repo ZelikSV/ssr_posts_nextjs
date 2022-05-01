@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { NextPageContext } from "next";
-import * as faker from "faker";
-import Link from "next/link";
-import { List, Avatar, Space, Button } from "antd";
-import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
-
+import Grid from '@mui/material/Grid';
 import MainLayout from "../../components/MainLayout/MainLayout";
 import Loading from "../../components/Loading/Loading";
 import { IPost } from "../../types/models";
 
 import styles from "./posts.module.scss";
+import PostCard from "../../components/PostCard/PostCard";
 
 interface IPostsProps {
   posts: IPost[];
@@ -31,58 +28,19 @@ const Posts = ({ posts: serverPosts }: IPostsProps) => {
     }
   }, [setPosts]);
 
-  const IconText = ({ icon, text }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
-
   return (
     <MainLayout titleName="Posts Page">
       <div className={styles.postsPage}>
         {posts ? (
-          <List
-            itemLayout="vertical"
-            size="small"
-            dataSource={posts}
-            renderItem={(item) => (
-              <List.Item
-                key={item.id}
-                actions={[
-                  <IconText
-                    icon={StarOutlined}
-                    text={faker.random.number({ min: 12, max: 220 })}
-                    key="list-vertical-star-o"
-                  />,
-                  <IconText
-                    icon={LikeOutlined}
-                    text={faker.random.number({ min: 12, max: 50 })}
-                    key="list-vertical-like-o"
-                  />,
-                  <IconText
-                    icon={MessageOutlined}
-                    text={faker.random.number({ min: 12, max: 100 })}
-                    key="list-vertical-message"
-                  />,
-                ]}
-              >
-                <List.Item.Meta
-                  avatar={<Avatar src={faker.image.imageUrl(200, 200)} />}
-                  title={<span>{item.title}</span>}
-                  description={`${item.body.slice(
-                    0,
-                    faker.random.number({ min: 120, max: 220 })
-                  )}...`}
-                />
-                <Button type="link">
-                  <Link href="post/[id]" as={`post/${item.id}`}>
-                    <a>See More</a>
-                  </Link>
-                </Button>
-              </List.Item>
-            )}
-          />
+                <Grid container spacing={1}>
+                  {posts.map(post => {
+                    return (
+                        <Grid item spacing={1} xs={12} sm={6} lg={3}>
+                          <PostCard post={post} />
+                        </Grid>
+                    )
+                  })}
+                </Grid>
         ) : (
           <Loading />
         )}

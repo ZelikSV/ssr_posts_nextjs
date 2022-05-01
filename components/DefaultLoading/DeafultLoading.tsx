@@ -5,10 +5,12 @@ const DefaultLoading = () => {
   return (
     <NextNprogress
       color="#29D"
+      height={900}
+      nonce="my-nonce"
+      showOnShallow={true}
       startPosition={100}
       stopDelayMs={300}
-      height="900px"
-    />
+     options={{ easing: "ease", speed: 500 }}/>
   );
 };
 

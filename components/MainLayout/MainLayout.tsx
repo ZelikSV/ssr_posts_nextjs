@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import Link from "next/link";
-import Head from "next/dist/next-server/lib/head";
+import Head from 'next/head';
 import { Layout, Menu } from "antd";
 import { useRouter } from "next/router";
 

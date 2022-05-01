@@ -5,6 +5,8 @@ export interface IPost {
   title: string;
   body: string;
   author: string;
+  isFavorites: boolean;
+  isLiked: boolean;
 }
 
 export interface IPostNextPageContext extends NextPageContext {
