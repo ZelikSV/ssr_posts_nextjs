@@ -1,34 +1,14 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useMemo } from 'react';
+import classnames from 'classnames';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import styled from '@emotion/styled';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { routes } from '../../pages/routes';
-
-const Header = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #1976d2;
-  z-index: 1;
-  width: 100%;
-`;
-
-const Content = styled.div`
-  margin-top: 55px;
-`;
-
-const HeaderLink = styled.li<{ isSelected: boolean }>`
-  list-style: none;
-  display: inline-block;
-  margin-right: 10px;
-
-  a {
-    text-decoration: ${({ isSelected }: { isSelected: boolean }) => (isSelected ? 'underline' : 'none')};
-    color: #fff;
-  }
-`;
+import { IAppStore } from '../../types';
+import { LoginActions } from '../../pages/login/actions';
+import styles from './styles.module.scss';
 
 type Props = {
   titleName?: string;
@@ -36,8 +16,13 @@ type Props = {
 
 const MainLayout: FC<Props> = ({ children, titleName = '' }) => {
   const router = useRouter();
-
+  const userName = useSelector((store: IAppStore) => store.login.name);
+  const dispatch = useDispatch();
   const selectedKey = useMemo(() => router.pathname.replace('/', ''), [router.pathname]);
+
+  useEffect(() => {
+    dispatch(LoginActions.getUserName());
+  }, []);
 
   return (
     <>
@@ -45,17 +30,23 @@ const MainLayout: FC<Props> = ({ children, titleName = '' }) => {
         <title>{titleName}</title>
       </Head>
       <section>
-        <Header>
+        <header className={styles.header}>
           <div className="logo" />
           <ul>
             {routes.map((page) => (
-              <HeaderLink key={page.id} isSelected={selectedKey === page.id}>
+              <li
+                className={classnames(styles.headerLink, {
+                  [styles.activeLink]: selectedKey === page.id,
+                })}
+                key={page.id}
+              >
                 <Link href={page.path}>{page.title}</Link>
-              </HeaderLink>
+              </li>
             ))}
           </ul>
-        </Header>
-        <Content>{children}</Content>
+          {userName && <p className={styles.userName}>{`Hello ${userName}`}</p>}
+        </header>
+        <div className={styles.contentWrapper}>{children}</div>
       </section>
     </>
   );

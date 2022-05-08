@@ -1,7 +1,6 @@
 import Router, { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { ArrowLeftOutlined } from '@ant-design/icons';
-import { Descriptions } from 'antd';
+import Button from '@mui/material/Button';
 
 import MainLayout from '../../components/MainLayout';
 import Loading from '../../components/Loading';
@@ -36,13 +35,11 @@ function PostItem({ post: serverPost }: IPostProps) {
     <MainLayout titleName={`post: ${uiPost.title}`}>
       {uiPost ? (
         <div className={styles.PostWrapper}>
-          <Descriptions title={uiPost.title}>
-            <Descriptions.Item>{uiPost.body}</Descriptions.Item>
-          </Descriptions>
-          <span onClick={handleGoPosts} className={styles.backLink}>
-            <ArrowLeftOutlined />
-            Back To Posts
-          </span>
+          <h2>{uiPost.title}</h2>
+          <p>{uiPost.body}</p>
+          <Button onClick={handleGoPosts} className={styles.backLink}>
+            Back
+          </Button>
         </div>
       ) : (
         <Loading />
