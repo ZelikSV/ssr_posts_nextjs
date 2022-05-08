@@ -3,13 +3,13 @@ import type { AppProps } from 'next/app';
 
 import '../styles/globals.css';
 
-import DefaultLoading from '../components/DefaultLoading/DeafultLoading';
+import DefaultLoading from '../components/DefaultLoading';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <DefaultLoading />
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </>
   );
 };

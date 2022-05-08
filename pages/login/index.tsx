@@ -2,9 +2,9 @@ import { ChangeEvent, SyntheticEvent, useMemo, useReducer } from 'react';
 import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 
-import TextField from '../../components/TextField/TextField';
+import TextField from '../../components/TextField';
 import { routes } from '../routes';
-import styles from './login.module.scss';
+import styles from './styles.module.scss';
 
 type State = {
   name: string | null;

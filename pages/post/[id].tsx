@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Descriptions } from 'antd';
 
-import MainLayout from '../../components/MainLayout/MainLayout';
-import Loading from '../../components/Loading/Loading';
+import MainLayout from '../../components/MainLayout';
+import Loading from '../../components/Loading';
 import { IPost, IPostNextPageContext } from '../../types/models';
-import styles from './post.module.scss';
+import styles from './styles.module.scss';
 
 interface IPostProps {
   post: IPost;

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { NextPageContext } from 'next';
 import Grid from '@mui/material/Grid';
 
-import MainLayout from '../../components/MainLayout/MainLayout';
-import Loading from '../../components/Loading/Loading';
+import MainLayout from '../../components/MainLayout';
+import Loading from '../../components/Loading';
 import { IPost } from '../../types/models';
-import PostCard from '../../components/PostCard/PostCard';
+import PostCard from '../../components/PostCard';
 
 interface IPostsProps {
   posts: IPost[] | null;
