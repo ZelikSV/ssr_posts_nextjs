@@ -1,19 +1,24 @@
 import React from 'react';
 
 import MainLayout from '../../components/MainLayout';
+import Loading from '../../components/Loading';
 
-interface IAboutProps {
+type Props = {
   title: string;
   content: string;
-}
+};
 
-const AboutPage = ({ title, content }: IAboutProps) => {
+const AboutPage = ({ title, content }: Props) => {
   return (
     <MainLayout titleName="About Page">
-      <div>
-        <h1>{title}</h1>
-        <p>{content}</p>
-      </div>
+      {title && content ? (
+        <div>
+          <h1>{title}</h1>
+          <p>{content}</p>
+        </div>
+      ) : (
+        <Loading />
+      )}
     </MainLayout>
   );
 };

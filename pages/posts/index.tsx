@@ -34,7 +34,7 @@ function Posts({ posts: serverPosts }: IPostsProps) {
         <Grid container spacing={1}>
           {posts.map((post) => {
             return (
-              <Grid key={post.id} item spacing={1} xs={12} sm={6} lg={3}>
+              <Grid key={post.id} item xs={12} sm={6} lg={3}>
                 <PostCard post={post} />
               </Grid>
             );

@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="108f2514-48f8-4c0c-b67a-e62ea309f215" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/styles/colors.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/DefaultLoading/DeafultLoading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/DefaultLoading/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Loading/Loading.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/Loading/loading.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Loading/Loading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Loading/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/about/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/about/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/post/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/post/[id].tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/posts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/posts/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651999885678</updated>
-      <workItem from="1651999901906" duration="917000" />
+      <workItem from="1651999901906" duration="2206000" />
     </task>
     <servers />
   </component>
