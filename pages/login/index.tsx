@@ -1,28 +1,39 @@
-import { ChangeEvent, SyntheticEvent, useMemo, useReducer } from 'react';
+import { ChangeEvent, SyntheticEvent, useEffect, useMemo, useReducer } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 
 import TextField from '../../components/TextField';
 import { routes } from '../routes';
 import styles from './styles.module.scss';
+import { LoginActions } from './actions';
+import { IAppStore } from '../../types';
 
 type State = {
-  name: string | null;
-  password: string | null;
+  name: string;
+  password: string;
 };
 
 const Login = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const userName = useSelector((store: IAppStore) => store.login.name);
   const [user, setUser] = useReducer(
     (prevState: State, nextState: State): State => ({
       ...prevState,
       ...nextState,
     }),
     {
-      name: null,
-      password: null,
+      name: '',
+      password: '',
     },
   );
+
+  useEffect(() => {
+    if (userName) {
+      router.push(routes[0].path);
+    }
+  }, [userName]);
 
   const handleTextField = (evt: ChangeEvent<HTMLInputElement>) => {
     if (evt.currentTarget.name) {
@@ -35,6 +46,7 @@ const Login = () => {
 
   const handleSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault();
+    dispatch(LoginActions.setUserData(user));
 
     router.push(routes[0].path);
   };

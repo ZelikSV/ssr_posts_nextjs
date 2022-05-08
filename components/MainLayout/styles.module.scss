@@ -1,0 +1,36 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1976d2;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+}
+
+.headerLink {
+  list-style: none;
+  display: inline-block;
+  margin-right: 10px;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+.activeLink {
+  a {
+    text-decoration: underline;
+  }
+}
+
+.contentWrapper {
+  margin-top: 55px;
+}
+
+.userName {
+  margin-left: auto;
+  margin-right: 50px;
+  color: #fff;
+}
