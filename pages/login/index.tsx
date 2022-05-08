@@ -1,20 +1,10 @@
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useCallback,
-  useMemo,
-  useReducer,
-} from "react";
-import { Typography, Button } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { useRouter } from "next/router";
+import { ChangeEvent, SyntheticEvent, useMemo, useReducer } from 'react';
+import { useRouter } from 'next/router';
+import Button from '@mui/material/Button';
 
-import TextField from "../../components/TextField/TextField";
-import PasswordField from "../../components/PasswordField/PasswordField";
-import { routes } from "../routes";
-import styles from "./login.module.scss";
-
-const { Title } = Typography;
+import TextField from '../../components/TextField/TextField';
+import { routes } from '../routes';
+import styles from './login.module.scss';
 
 type State = {
   name: string | null;
@@ -31,20 +21,17 @@ const Login = () => {
     {
       name: null,
       password: null,
-    }
+    },
   );
 
-  const handleTextField = useCallback(
-    (evt: ChangeEvent<HTMLInputElement>) => {
-      if (evt.currentTarget.name) {
-        setUser({
-          ...user,
-          [evt.currentTarget.name]: evt.currentTarget.value,
-        });
-      }
-    },
-    [user]
-  );
+  const handleTextField = (evt: ChangeEvent<HTMLInputElement>) => {
+    if (evt.currentTarget.name) {
+      setUser({
+        ...user,
+        [evt.currentTarget.name]: evt.currentTarget.value,
+      });
+    }
+  };
 
   const handleSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault();
@@ -55,27 +42,12 @@ const Login = () => {
   const isValidUser = useMemo(() => user.name && user.password, [user]);
 
   return (
-    <div className={styles.loginPage}>
+    <div className={styles.formPage}>
       <form className={styles.formWrapper} onSubmit={handleSubmit}>
-        <Title>Sing In</Title>
-        <TextField
-          label="User name"
-          name="name"
-          value={user.name}
-          onChange={handleTextField}
-          placeholder="user name"
-          prefix={<UserOutlined />}
-        />
-        <PasswordField
-          label="Password"
-          name="password"
-          value={user.password}
-          placeholder="password"
-          onChange={handleTextField}
-          prefix={<LockOutlined />}
-        />
+        <TextField label="User name" name="name" value={user.name} onChange={handleTextField} />
+        <TextField label="Password" name="password" type="password" value={user.password} onChange={handleTextField} />
 
-        <Button type="primary" htmlType="submit" disabled={!isValidUser}>
+        <Button type="submit" variant="contained" disabled={!isValidUser}>
           Login
         </Button>
       </form>

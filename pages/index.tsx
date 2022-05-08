@@ -1,8 +1,9 @@
-import MainLayout from "../components/MainLayout/MainLayout";
-import React from "react";
-import Login from "./login";
+import type { NextPage } from 'next';
 
-const App = () => {
+import MainLayout from '../components/MainLayout/MainLayout';
+import Login from './login';
+
+const Home: NextPage = () => {
   return (
     <div>
       <MainLayout titleName="Login">
@@ -12,4 +13,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;

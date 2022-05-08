@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { NextPageContext } from "next";
+import React, { useState, useEffect } from 'react';
+import { NextPageContext } from 'next';
 import Grid from '@mui/material/Grid';
-import MainLayout from "../../components/MainLayout/MainLayout";
-import Loading from "../../components/Loading/Loading";
-import { IPost } from "../../types/models";
 
-import styles from "./posts.module.scss";
-import PostCard from "../../components/PostCard/PostCard";
+import MainLayout from '../../components/MainLayout/MainLayout';
+import Loading from '../../components/Loading/Loading';
+import { IPost } from '../../types/models';
+import PostCard from '../../components/PostCard/PostCard';
 
 interface IPostsProps {
-  posts: IPost[];
+  posts: IPost[] | null;
 }
 
-const Posts = ({ posts: serverPosts }: IPostsProps) => {
-  const [posts, setPosts] = useState<IPost[]>(serverPosts);
+function Posts({ posts: serverPosts }: IPostsProps) {
+  const [posts, setPosts] = useState<IPost[] | null>(serverPosts);
 
   // This is data processing on both sides BE and FE
   useEffect(() => {
@@ -23,6 +22,7 @@ const Posts = ({ posts: serverPosts }: IPostsProps) => {
 
       setPosts(postsResponse);
     }
+
     if (!serverPosts) {
       load();
     }
@@ -30,24 +30,22 @@ const Posts = ({ posts: serverPosts }: IPostsProps) => {
 
   return (
     <MainLayout titleName="Posts Page">
-      <div className={styles.postsPage}>
-        {posts ? (
-                <Grid container spacing={1}>
-                  {posts.map(post => {
-                    return (
-                        <Grid item spacing={1} xs={12} sm={6} lg={3}>
-                          <PostCard post={post} />
-                        </Grid>
-                    )
-                  })}
-                </Grid>
-        ) : (
-          <Loading />
-        )}
-      </div>
+      {posts ? (
+        <Grid container spacing={1}>
+          {posts.map((post) => {
+            return (
+              <Grid key={post.id} item spacing={1} xs={12} sm={6} lg={3}>
+                <PostCard post={post} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      ) : (
+        <Loading />
+      )}
     </MainLayout>
   );
-};
+}
 
 Posts.getInitialProps = async ({ req }: NextPageContext) => {
   if (!req) {
@@ -55,6 +53,7 @@ Posts.getInitialProps = async ({ req }: NextPageContext) => {
       posts: null,
     };
   }
+
   const res = await fetch(`${process.env.BASE_URL}/posts`);
   const json = await res.json();
 

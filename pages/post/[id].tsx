@@ -1,22 +1,22 @@
-import Router, { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import MainLayout from "../../components/MainLayout/MainLayout";
-import Loading from "../../components/Loading/Loading";
-import { IPost, IPostNextPageContext } from "../../types/models";
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import { Descriptions } from "antd";
+import Router, { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { ArrowLeftOutlined } from '@ant-design/icons';
+import { Descriptions } from 'antd';
 
-import styles from "./post.module.scss";
+import MainLayout from '../../components/MainLayout/MainLayout';
+import Loading from '../../components/Loading/Loading';
+import { IPost, IPostNextPageContext } from '../../types/models';
+import styles from './post.module.scss';
 
 interface IPostProps {
   post: IPost;
 }
 
-const PostItem = ({ post: serverPost }: IPostProps) => {
+function PostItem({ post: serverPost }: IPostProps) {
   const [uiPost, setUiPost] = useState(serverPost);
   const { query } = useRouter();
   const handleGoPosts = () => {
-    Router.push("/posts");
+    Router.push('/posts');
   };
 
   useEffect(() => {
@@ -26,6 +26,7 @@ const PostItem = ({ post: serverPost }: IPostProps) => {
 
       setUiPost(data);
     }
+
     if (!serverPost) {
       load();
     }
@@ -34,7 +35,7 @@ const PostItem = ({ post: serverPost }: IPostProps) => {
   return (
     <MainLayout titleName={`post: ${uiPost.title}`}>
       {uiPost ? (
-        <div className={styles.postWrapper}>
+        <div className={styles.PostWrapper}>
           <Descriptions title={uiPost.title}>
             <Descriptions.Item>{uiPost.body}</Descriptions.Item>
           </Descriptions>
@@ -48,7 +49,7 @@ const PostItem = ({ post: serverPost }: IPostProps) => {
       )}
     </MainLayout>
   );
-};
+}
 
 /*
 This is data processing only BE side

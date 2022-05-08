@@ -1,12 +1,12 @@
 export const routes = [
   {
-    id: "about",
-    title: "About",
-    path: "/about",
+    id: 'about',
+    title: 'About',
+    path: '/about',
   },
   {
-    id: "posts",
-    title: "Posts",
-    path: "/posts",
+    id: 'posts',
+    title: 'Posts',
+    path: '/posts',
   },
 ];

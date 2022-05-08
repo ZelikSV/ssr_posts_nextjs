@@ -1,14 +1,15 @@
-import React from "react";
-import DefaultLoading from "../components/DefaultLoading/DeafultLoading";
+import { FC } from 'react';
+import type { AppProps } from 'next/app';
 
-import "antd/dist/antd.css";
-import "./index.scss";
+import '../styles/globals.css';
 
-const MyApp = ({ Component, pageProps }) => {
+import DefaultLoading from '../components/DefaultLoading/DeafultLoading';
+
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <DefaultLoading />
-      <Component {...pageProps} />
+      <Component {...pageProps} />;
     </>
   );
 };
