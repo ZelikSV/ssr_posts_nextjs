@@ -32,17 +32,13 @@ function Posts({ posts: serverPosts }: IPostsProps) {
     <MainLayout titleName="Posts Page">
       {posts ? (
         <Grid container spacing={1}>
-          {posts.map((post) => {
-            return (
+          {posts.map((post) => (
               <Grid key={post.id} item xs={12} sm={6} lg={3}>
                 <PostCard post={post} />
               </Grid>
-            );
-          })}
+            ))}
         </Grid>
-      ) : (
-        <Loading />
-      )}
+      ) : (<Loading />)}
     </MainLayout>
   );
 }

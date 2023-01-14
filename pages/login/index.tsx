@@ -14,7 +14,7 @@ type State = {
   password: string;
 };
 
-const Login = () => {
+function Login() {
   const router = useRouter();
   const dispatch = useDispatch();
   const userName = useSelector((store: IAppStore) => store.login.name);
