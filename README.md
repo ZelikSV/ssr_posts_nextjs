@@ -1,9 +1,6 @@
 # Get Started
 
 This is my trial work with SSR application by NextJS.
-All work based by video lesson of the Vladilen Minin
-
-https://www.youtube.com/watch?v=_EOrSmjdOZQ
 
 Before start make .env file:
 API_URL=http://localhost:4200
